@@ -12,6 +12,7 @@ public class JsonManualConverterTest {
         // {"id", "name", "origName", "year", "description", "rating", "price"};
         String expectedJson = "{\"id\":\"1\",\"name\":\"Movie Name\",\"origName\":\"Original Movie Name\",\"year\":\"2017\",\"description\":\"Movie Description\",\"rating\":\"5.0\",\"price\":\"70.0\"}";
         JsonManualConverter jsonManualConverter = new JsonManualConverter();
+
         Movie movie = new Movie();
         movie.setId(1);
         movie.setName("Movie Name");

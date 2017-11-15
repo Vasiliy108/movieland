@@ -12,8 +12,11 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+
 @Controller
-//@RequestMapping("/v1/movie")
 @RequestMapping(path = "/v1/movie", produces = "application/json; charset=utf-8")
 public class MovieController {
     private final Logger log = LoggerFactory.getLogger(getClass());
@@ -36,5 +39,35 @@ public class MovieController {
         String movieJson = jsonConverter.toJson(movie);
         log.info("Movie {} is received. It took {} ms", movieJson, System.currentTimeMillis() - startTime);
         return movieJson;
+    }
+
+    @RequestMapping("")
+    @ResponseBody
+    public String getAllMovies() {
+        final String jsonsDelimiter = ",\n";
+
+        log.info("Sending request to get all movies");
+        long startTime = System.currentTimeMillis();
+
+        List<Movie> moviesList = movieService.getAllMovies();
+        StringBuilder sb = new StringBuilder();
+
+//        for ( Movie movie : moviesList ) {
+//            sb.append( jsonConverter.toJson(movie) );
+//            sb.append( jsonsDelimiter );
+//        }
+//        sb.delete( sb.length()-jsonsDelimiter.length(), sb.length() );
+
+        Iterator<Movie> moviesIterator = moviesList.iterator();
+        if( moviesIterator.hasNext() ) {
+            sb.append( jsonConverter.toJson( moviesIterator.next() ) );
+        }
+        while( moviesIterator.hasNext() ) {
+            sb.append( jsonsDelimiter );
+            sb.append( jsonConverter.toJson( moviesIterator.next() ) );
+        }
+
+        log.info("Movies are received. It took {} ms", System.currentTimeMillis() - startTime);
+        return sb.toString();
     }
 }

@@ -6,6 +6,8 @@ import com.luxoft.svinenkov.movieland.service.MovieService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class MovieServiceImpl implements MovieService {
     @Autowired
@@ -14,6 +16,10 @@ public class MovieServiceImpl implements MovieService {
     @Override
     public Movie getById(int id) {
         return movieDao.getById(id);
+    }
+
+    public List <Movie> getAllMovies() {
+        return movieDao.getAllMovies();
     }
 
     @Override

@@ -8,6 +8,11 @@
         <constructor-arg value="SELECT id, movie_name, movie_orig_name, year, description, rating, price FROM movie where id = ?;"/>
     </bean>
 
+    <bean id="getAllMovies" class="java.lang.String">
+        <constructor-arg value="SELECT id, movie_name, movie_orig_name, year, description, rating, price FROM movie;"/>
+    </bean>
+
+
     <bean id="addMovieSQL" class="java.lang.String">
         <constructor-arg value="INSERT INTO movie (movie_name, movie_orig_name, year, description, rating, price) VALUES (:movie_name, :movie_orig_name, :year, :description, :rating, :price);"/>
     </bean>
