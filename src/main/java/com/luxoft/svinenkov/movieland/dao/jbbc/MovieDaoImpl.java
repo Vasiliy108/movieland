@@ -15,6 +15,7 @@ import java.util.List;
 @Service
 public class MovieDaoImpl implements MovieDao {
     private final Logger log = LoggerFactory.getLogger(getClass());
+    private static final MovieRowMapper movieRowMapper = new MovieRowMapper();
 
     @Autowired
     private JdbcTemplate jdbcTemplate;
@@ -35,7 +36,7 @@ public class MovieDaoImpl implements MovieDao {
     public Movie getById(int id) {
         log.info("Start query to get movie with id {} from DB", id);
         long startTime = System.currentTimeMillis();
-        Movie movie = jdbcTemplate.queryForObject(getMovieByIdSQL, new Object[]{id}, new MovieRowMapper());
+        Movie movie = jdbcTemplate.queryForObject(getMovieByIdSQL, new Object[]{id}, movieRowMapper);
         log.info("Finish query to get movie with id {} from DB. It took {} ms", id, System.currentTimeMillis() - startTime);
         return movie;
     }
@@ -44,7 +45,7 @@ public class MovieDaoImpl implements MovieDao {
     public List <Movie> getAllMovies() {
         log.info("Start query to get all movies from DB");
         long startTime = System.currentTimeMillis();
-        List<Movie> moviesList = jdbcTemplate.query(getAllMovies, new MovieRowMapper());
+        List<Movie> moviesList = jdbcTemplate.query(getAllMovies, movieRowMapper);
         log.info("Finish query to get all movie from DB. It took {} ms", System.currentTimeMillis() - startTime);
         return moviesList;
     }

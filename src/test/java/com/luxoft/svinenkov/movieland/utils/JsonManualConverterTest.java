@@ -8,9 +8,9 @@ import static org.junit.Assert.assertEquals;
 public class JsonManualConverterTest {
 
     @Test
-    public void testCityToJson() {
-        // {"id", "name", "origName", "year", "description", "rating", "price"};
-        String expectedJson = "{\"id\":\"1\",\"name\":\"Movie Name\",\"origName\":\"Original Movie Name\",\"year\":\"2017\",\"description\":\"Movie Description\",\"rating\":\"5.0\",\"price\":\"70.0\"}";
+    public void testMovieToJson() {
+        // {"id", "nameRussian", "nameRussian", "yearOfRelease", "rating", "price", "picturePath"};
+        String expectedJson = "{\"id\":1,\"nameRussian\":\"Movie Name\",\"nameNative\":\"Original Movie Name\",\"yearOfRelease\":2017,\"rating\":5.0,\"price\":70.0,\"picturePath\":\"http:\\\\some_url.com\"}";
         JsonManualConverter jsonManualConverter = new JsonManualConverter();
 
         Movie movie = new Movie();
@@ -18,11 +18,15 @@ public class JsonManualConverterTest {
         movie.setName("Movie Name");
         movie.setOrigName("Original Movie Name");
         movie.setYear(2017);
-        movie.setDescription("Movie Description");
         movie.setRating(5);
         movie.setPrice(70);
+        movie.setPosterUrl("http:\\\\some_url.com");
 
         String actualJson = jsonManualConverter.toJson(movie);
-        assertEquals(expectedJson, actualJson);
+        assertEquals(
+                "testMovieToJson() failed!",
+                expectedJson,
+                actualJson
+        );
     }
 }
