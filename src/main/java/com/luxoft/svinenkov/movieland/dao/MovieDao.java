@@ -7,6 +7,4 @@ public interface MovieDao {
     Movie getById(int id);
 
     List <Movie> getAllMovies();
-
-    void add(Movie movie);
 }

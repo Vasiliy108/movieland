@@ -1,9 +1,6 @@
 package com.luxoft.svinenkov.movieland.controller;
 
-import com.luxoft.svinenkov.movieland.entity.Country;
-import com.luxoft.svinenkov.movieland.entity.Genre;
 import com.luxoft.svinenkov.movieland.entity.Movie;
-import com.luxoft.svinenkov.movieland.service.MovieService;
 import com.luxoft.svinenkov.movieland.service.impl.MovieServiceImpl;
 import com.luxoft.svinenkov.movieland.utils.JsonManualConverter;
 import org.junit.Before;
@@ -12,9 +9,6 @@ import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.test.web.servlet.MockMvc;
@@ -25,7 +19,6 @@ import java.util.List;
 
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 @RunWith(MockitoJUnitRunner.class)

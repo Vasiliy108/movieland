@@ -49,9 +49,4 @@ public class MovieDaoImpl implements MovieDao {
         log.info("Finish query to get all movie from DB. It took {} ms", System.currentTimeMillis() - startTime);
         return moviesList;
     }
-
-    @Override
-    public void add(Movie movie) {
-
-    }
 }

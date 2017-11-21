@@ -8,6 +8,4 @@ public interface MovieService {
     Movie getById(int id);
 
     List <Movie> getAllMovies();
-
-    void add(Movie movie);
 }
