@@ -13,8 +13,7 @@ public class JsonManualConverterTest {
     @Test
     public void toJson() throws Exception {
         // {"id", "nameRussian", "nameRussian", "yearOfRelease", "rating", "price", "picturePath"};
-        String expectedJson = "{\"id\":1,\"nameRussian\":\"Movie Name\",\"nameNative\":\"Original Movie Name\",\"yearOfRelease\":2017,\"description\":\"Some movie description\",\"rating\":5.0,\"price\":70.0,\"picturePath\":\"http:\\\\some_url.com\"}";
-        JsonManualConverter jsonManualConverter = new JsonManualConverter();
+        String expectedJson = "{\"id\":1,\"nameRussian\":\"Movie Name\",\"nameNative\":\"Original Movie Name\",\"yearOfRelease\":2017,\"rating\":5.0,\"price\":70.0,\"picturePath\":\"http:\\\\some_url.com\"}";
 
         Movie movie = new Movie(
                 1,
@@ -27,9 +26,9 @@ public class JsonManualConverterTest {
                 "http:\\\\some_url.com"
         );
 
-        String actualJson = jsonManualConverter.toJson(movie);
+        String actualJson = JsonManualConverter.toJson(movie);
         assertEquals(
-                "testMovieToJson() failed!",
+                "toJson() failed!",
                 expectedJson,
                 actualJson
         );
@@ -39,8 +38,8 @@ public class JsonManualConverterTest {
     public void listToJson() throws Exception {
         String expectedJson =
                 "[" +
-                "{\"id\":1,\"nameRussian\":\"Movie1 Name\",\"nameNative\":\"Original Movie1 Name\",\"yearOfRelease\":2017,\"description\":\"1st movie description\",\"rating\":5.0,\"price\":70.0,\"picturePath\":\"http:\\\\some_url.com\"},\n" +
-                "{\"id\":2,\"nameRussian\":\"Movie2 Name\",\"nameNative\":\"Original Movie2 Name\",\"yearOfRelease\":2018,\"description\":\"2nd movie description\",\"rating\":6.0,\"price\":99.0,\"picturePath\":\"http:\\\\another_url.com\"}" +
+                "{\"id\":1,\"nameRussian\":\"Movie1 Name\",\"nameNative\":\"Original Movie1 Name\",\"yearOfRelease\":2017,\"rating\":5.0,\"price\":70.0,\"picturePath\":\"http:\\\\some_url.com\"},\n" +
+                "{\"id\":2,\"nameRussian\":\"Movie2 Name\",\"nameNative\":\"Original Movie2 Name\",\"yearOfRelease\":2018,\"rating\":6.0,\"price\":99.0,\"picturePath\":\"http:\\\\another_url.com\"}" +
                 "]"
                 ;
         List <Movie> movieList = new ArrayList <>();
@@ -67,7 +66,7 @@ public class JsonManualConverterTest {
 
         String actualJson = JsonManualConverter.listToJson(movieList);
         assertEquals(
-                "testMovieToJson() failed!",
+                "listToJson() failed!",
                 expectedJson,
                 actualJson
         );

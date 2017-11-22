@@ -19,8 +19,8 @@ public class JsonManualConverter {
         Logger log = LoggerFactory.getLogger(JsonManualConverter.class);
         log.info("Start converting movie {} to json", movie);
         StringBuilder json = new StringBuilder("{");
-        String[] movieFieldNames = {"id", "nameRussian", "nameNative", "yearOfRelease", "description", "rating", "price", "picturePath"};
-        Object[] movieFields = { movie.getId(), movie.getName(), movie.getOrigName(), movie.getYear(), movie.getDescription(), movie.getRating(), movie.getPrice(), movie.getPosterURL() };
+        String[] movieFieldNames = {"id", "nameRussian", "nameNative", "yearOfRelease", "rating", "price", "picturePath"};
+        Object[] movieFields = { movie.getId(), movie.getName(), movie.getOrigName(), movie.getYear(), movie.getRating(), movie.getPrice(), movie.getPosterURL() };
         for (int i = 0; i < movieFieldNames.length; i++) {
             // Filed name --> ALWAYS should be inside quotes:
             json.append( surroundByQuotes(movieFieldNames[i]) );
