@@ -13,11 +13,6 @@ public class MovieServiceImpl implements MovieService {
     @Autowired
     private MovieDao movieDao;
 
-    @Override
-    public Movie getById(int id) {
-        return movieDao.getById(id);
-    }
-
     public List <Movie> getAllMovies() {
         return movieDao.getAllMovies();
     }

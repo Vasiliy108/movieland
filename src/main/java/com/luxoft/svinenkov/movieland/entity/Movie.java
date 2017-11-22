@@ -1,14 +1,10 @@
 package com.luxoft.svinenkov.movieland.entity;
 
-import java.util.List;
-
 public class Movie {
     private int id;
     private String name;
     private String origName;
     private int year;
-    private List<Country> countries;
-    private List<Genre> genres;
     private String description;
     private float rating;
     private float price;
@@ -22,8 +18,6 @@ public class Movie {
             String name,
             String origName,
             int year,
-            List<Country> countries,
-            List<Genre> genres,
             String description,
             float rating,
             float price,
@@ -33,8 +27,6 @@ public class Movie {
         this.name = name;
         this.origName = origName;
         this.year = year;
-        this.countries = countries;
-        this.genres = genres;
         this.description = description;
         this.rating = rating;
         this.price = price;
@@ -67,20 +59,6 @@ public class Movie {
     }
     public void setYear(int year) {
         this.year = year;
-    }
-
-    public List<Country> getCountries() {
-        return countries;
-    }
-    public void setCountries(List<Country> countries) {
-        this.countries = countries;
-    }
-
-    public List<Genre> getGenres() {
-        return genres;
-    }
-    public void setGenres(List<Genre> genres) {
-        this.genres = genres;
     }
 
     public String getDescription() {
@@ -117,8 +95,6 @@ public class Movie {
                 ", name='" + name + '\'' +
                 ", origName='" + origName + '\'' +
                 ", year='" + year + '\'' +
-                ", countries='" + countries + '\'' +
-                ", genres='" + genres + '\'' +
                 ", description='" + description + '\'' +
                 ", rating='" + rating + '\'' +
                 ", price=" + price + '\'' +

@@ -4,35 +4,10 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans
         http://www.springframework.org/schema/beans/spring-beans.xsd">
 
-    <bean id="getMovieByIdSQL" class="java.lang.String">
-        <constructor-arg value="
-        SELECT  m.id, m.movie_name, m.movie_orig_name, m.year,
-                ( select group_concat(distinct g.id || '\' || g.genre_name)
-                  from movie_genre mg, genre g
-                  where mg.movieid = m.id
-                    and mg.genreid = g.id
-                ) genres,
-                ( select group_concat(distinct c.id || '\' || c.name)
-                  from movie_country mc, country c
-                  where mc.movieid = m.id
-                    and mc.countryid = c.id
-                ) countries,
-                m.description, m.rating, m.price,
-                (select p.url from poster p where p.movieid = m.id) poster_url
-        FROM  movie m
-        WHERE m.id = ?;"/>
-    </bean>
-
     <bean id="getAllMovies" class="java.lang.String">
         <constructor-arg value="
         SELECT  m.id, m.movie_name, m.movie_orig_name, m.year, m.description, m.rating, m.price,
-                '' as genres, '' as countries,
                 (select p.url from poster p where p.movieid = m.id) poster_url
         FROM  movie m;"/>
-    </bean>
-
-
-    <bean id="addMovieSQL" class="java.lang.String">
-        <constructor-arg value="INSERT INTO movie (movie_name, movie_orig_name, year, description, rating, price) VALUES (:movie_name, :movie_orig_name, :year, :description, :rating, :price);"/>
     </bean>
 </beans>

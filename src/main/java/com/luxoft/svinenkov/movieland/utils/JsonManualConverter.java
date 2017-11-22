@@ -10,17 +10,17 @@ import java.util.List;
 
 @Service
 public class JsonManualConverter {
-    private final Logger log = LoggerFactory.getLogger(getClass());
     private static final String COMMA_SEPARATOR = ",";
     private static final String COLON_SEPARATOR = ":";
     private static final String JSONS_DELIMITER = ",\n";
     private static final String JAVA_NUMBER_OBJECTS_TYPE_NAMES = "[java.lang.Byte], [java.lang.Short], [java.lang.Character], [java.lang.Integer], [java.lang.Long], [java.lang.Float], [java.lang.Double]";
 
-    public String toJson(Movie movie) {
+    public static String toJson(Movie movie) {
+        Logger log = LoggerFactory.getLogger(JsonManualConverter.class);
         log.info("Start converting movie {} to json", movie);
         StringBuilder json = new StringBuilder("{");
-        String[] movieFieldNames = {"id", "nameRussian", "nameNative", "yearOfRelease", "rating", "price", "picturePath"};
-        Object[] movieFields = { movie.getId(), movie.getName(), movie.getOrigName(), movie.getYear(), movie.getRating(), movie.getPrice(), movie.getPosterURL() };
+        String[] movieFieldNames = {"id", "nameRussian", "nameNative", "yearOfRelease", "description", "rating", "price", "picturePath"};
+        Object[] movieFields = { movie.getId(), movie.getName(), movie.getOrigName(), movie.getYear(), movie.getDescription(), movie.getRating(), movie.getPrice(), movie.getPosterURL() };
         for (int i = 0; i < movieFieldNames.length; i++) {
             // Filed name --> ALWAYS should be inside quotes:
             json.append( surroundByQuotes(movieFieldNames[i]) );
@@ -36,7 +36,8 @@ public class JsonManualConverter {
         return json.toString();
     }
 
-    public String listToJson(List<Movie> moviesList) {
+    public static String listToJson(List<Movie> moviesList) {
+        Logger log = LoggerFactory.getLogger(JsonManualConverter.class);
         log.info( "Start converting movie list with {} elements to json", moviesList.size() );
         StringBuilder sb = new StringBuilder();
         sb.append("[");
@@ -54,11 +55,11 @@ public class JsonManualConverter {
         return sb.toString();
     }
 
-    private String surroundByQuotes(Object value) {
+    private static String surroundByQuotes(Object value) {
         return "\"" + value + "\"";
     }
-    private String smartSurroundByQuotes(Object value) {
-        if( JAVA_NUMBER_OBJECTS_TYPE_NAMES.indexOf( "["+value.getClass().getTypeName()+"]" ) >= 0 ) {
+    private static String smartSurroundByQuotes(Object value) {
+        if( JAVA_NUMBER_OBJECTS_TYPE_NAMES.contains("[" + value.getClass().getTypeName() + "]") ) {
             return value.toString();
         } else {
             return surroundByQuotes( value );

@@ -1,13 +1,10 @@
 package com.luxoft.svinenkov.movieland.dao.jbbc.mapper;
 
-import com.luxoft.svinenkov.movieland.entity.Genre;
 import com.luxoft.svinenkov.movieland.entity.Movie;
 import org.springframework.jdbc.core.RowMapper;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
 
 public class MovieRowMapper implements RowMapper<Movie> {
 
@@ -22,15 +19,6 @@ public class MovieRowMapper implements RowMapper<Movie> {
         movie.setRating(resultSet.getFloat("rating"));
         movie.setPrice(resultSet.getFloat("price"));
         movie.setPosterUrl(resultSet.getString("poster_url"));
-        ArrayList<Genre> genresList = new ArrayList();
-        for( String genreStr : resultSet.getString("genres").split(",") ) {
-            Genre genre = new Genre();
-            //genre.setId( Integer.getInteger( genreStr.substring(1,genreStr.indexOf("\\")-1) ) );
-            //genre.setName( genreStr.substring(genreStr.indexOf("\\")-1) );
-            genre.setName( genreStr );
-            genresList.add(genre);
-        }
-        //resultSet.getString("countries").split(",")
         return movie;
     }
 }
