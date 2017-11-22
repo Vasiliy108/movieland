@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="getAllMovies" class="java.lang.String">
+        <constructor-arg value="
+        SELECT  m.id, m.movie_name, m.movie_orig_name, m.year, m.description, m.rating, m.price,
+                (select p.url from poster p where p.movieid = m.id) poster_url
+        FROM  movie m;"/>
+    </bean>
+</beans>
